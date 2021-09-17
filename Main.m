@@ -6,14 +6,20 @@ clc;
 [filename, pathname] = uigetfile ('*.*','Select the Input Audio');
 [input,fs] = audioread(filename);
 %listening to the input signal
-sound(input,inputfs);
+sound(input,fs);
+
 figure(1);
 freqz(input);
 title('magnitude plot of input signal');
+pause(4);
 
 
 %answer to 1.b
-%put periodicity code here%
+period = xcorr(input,fs,'coeff');
+figure(2);
+title("Periodicity of the input signal");
+plot(period);
+%the signal repeats its self after every 70 samples%
 
 
 %answer to 1.c 
